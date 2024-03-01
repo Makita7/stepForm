@@ -3,9 +3,9 @@ import personalInfoPage from '../pages/personaInfoPage.vue';
 
 const routes = [
     { path: '/', component: personalInfoPage },
-    { path: '/about', component: () => '../pages/selectPlanPage.vue' },
-    { path: '/about', component: () => '../pages/addonsPage.vue' },
-    { path: '/about', component: () => '../pages/summaryPage.vue' },
+    { path: '/select-plan', component: () => import('../pages/selectPlanPage.vue') },
+    { path: '/add-ons', component: () => import('../pages/addonsPage.vue' )},
+    { path: '/summary', component: () => import('../pages/summaryPage.vue') },
 ]
 
 
