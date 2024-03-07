@@ -1,5 +1,14 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
+import { RouterView } from 'vue-router';
+import navbarItems from './components/navbarItems.vue';
+import { ref } from 'vue'
+
+const links = ref([
+  { num: 1, title: 'your info', path: '/'},
+  { num: 2, title: 'select plan', path: '/select-plan' },
+  { num: 3, title: 'addons', path: '/add-ons' },
+  { num: 4, title: 'summary', path: '/summary' },
+]);
 
 </script>
 
@@ -7,7 +16,15 @@ import { RouterView } from 'vue-router'
   <div class="d-flex justify-center mt-15">
     <v-card width="70rem" min-height="30rem" class="roundm pa-3">
       <div class="d-flex">
-        <v-col cols="4" class="roundm cardNav" >img</v-col>
+        <v-col cols="4" class="roundm cardNav pa-10" >
+          <navbarItems
+            v-for="l in links"
+            :key="l.num"
+            :num="l.num"
+            :title="l.title"
+            :path="l.path"
+          />
+        </v-col>
         <RouterView/>
       </div>
     </v-card>
@@ -17,7 +34,7 @@ import { RouterView } from 'vue-router'
 <style lang="scss" scoped>
   :deep(){
     .roundm{
-      border-radius: 2rem !important;
+      border-radius: 1rem !important;
     }
   }
 
