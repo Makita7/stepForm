@@ -25,7 +25,9 @@ const links = ref([
             :path="l.path"
           />
         </v-col>
-        <RouterView/>
+        <v-col class="ma-6 pl-12">
+          <RouterView/>
+        </v-col>
       </div>
     </v-card>
   </div>
@@ -36,6 +38,9 @@ const links = ref([
     .roundm{
       border-radius: 1rem !important;
     }
+    .v-btn{
+      text-transform: capitalize;
+    }
   }
 
   .cardNav{
@@ -43,4 +48,18 @@ const links = ref([
     background-image: url('./assets/bg-sidebar-desktop.svg');
     background-size: cover;
   }
+</style>
+
+<style lang="scss">
+
+.titles{
+  color: var(--marineblue);
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.detail{
+  color: var(--cool-gray);
+}
+
 </style>

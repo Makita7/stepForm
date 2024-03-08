@@ -3,7 +3,8 @@
 </script>
 
 <template>
-    add-ons
+    <h1 class="titles">Pick add-ons</h1>
+    <p class="detail mb-8">Please provide your name, email address, and phone number.</p>
 </template>
 
 <style lang="scss" scoped>
