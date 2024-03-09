@@ -54,10 +54,10 @@ const Plans = ref([
             :class="p.title == selected ? 'activeC' : ''"
         >
             <img :alt="p.title" :src="p.img" />
-            <p class="mt-4">{{ p.title }}</p>
-            <p v-if="yearPlan">{{ p.yearly }} /yr</p>
-            <p v-if="yearPlan">{{ p.discount }} months free</p>
-            <p v-else>{{ p.monthly }} /mo</p>
+            <p class="mt-4 title">{{ p.title }}</p>
+            <p class="detail" v-if="yearPlan">{{ p.yearly }} /yr</p>
+            <p class="detail" v-if="yearPlan">{{ p.discount }} months free</p>
+            <p class="detail" v-else>{{ p.monthly }} /mo</p>
         </v-card>
     </div>
     <div class="d-flex align-center switchDiv mt-8">
@@ -67,10 +67,10 @@ const Plans = ref([
         <p class="font-weight-bold" :class="yearPlan ? 'active' : 'inactive'">Yearly</p>
         <v-spacer/>
     </div>
-    <div class="d-flex mt-8">
-        <v-btn class="align" variant="text">Go Back</v-btn>
+    <div class="d-flex">
+        <v-btn class="align b l" variant="text">Go Back</v-btn>
         <v-spacer/>
-        <v-btn class="align elevation-0" color="#02295a">Next Step</v-btn>
+        <v-btn class="align elevation-0 b r" color="#02295a">Next Step</v-btn>
     </div>
 </template>
 
@@ -90,6 +90,15 @@ const Plans = ref([
     }
     .activeC{
         border-color: var(--marineblue) !important;
+    }
+    .title{
+        color: var(--marineblue);
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+    .detail{
+        color: var(--cool-gray);
+        font-weight: 500;
     }
 
 </style>

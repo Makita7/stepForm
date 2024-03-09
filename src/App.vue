@@ -25,7 +25,7 @@ const links = ref([
             :path="l.path"
           />
         </v-col>
-        <v-col class="ma-6 pl-12">
+        <v-col class="ma-6 pl-12 relative">
           <RouterView/>
         </v-col>
       </div>
@@ -40,6 +40,12 @@ const links = ref([
     }
     .v-btn{
       text-transform: capitalize;
+    }
+    .v-btn--variant-text {
+      color: var(--cool-gray);
+      span{
+        font-weight: bold;
+      }
     }
   }
 
@@ -61,5 +67,19 @@ const links = ref([
 .detail{
   color: var(--cool-gray);
 }
-
+.relative{
+  position: relative;
+  .l{
+    left: 0;
+    position: absolute;
+  }
+  .r{
+    right: 0;
+    position: absolute;
+  }
+  .b{
+    bottom: 0;
+    position: absolute;
+  }
+}
 </style>
