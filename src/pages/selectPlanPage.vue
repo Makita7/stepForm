@@ -55,9 +55,9 @@ const Plans = ref([
         >
             <img :alt="p.title" :src="p.img" />
             <p class="mt-4 title">{{ p.title }}</p>
-            <p class="detail" v-if="yearPlan">{{ p.yearly }} /yr</p>
-            <p class="detail" v-if="yearPlan">{{ p.discount }} months free</p>
-            <p class="detail" v-else>{{ p.monthly }} /mo</p>
+            <p class="pDetail" v-if="yearPlan">{{ p.yearly }} /yr</p>
+            <p class="pDetail" v-if="yearPlan">{{ p.discount }} months free</p>
+            <p class="pDetail" v-else>{{ p.monthly }} /mo</p>
         </v-card>
     </div>
     <div class="d-flex align-center switchDiv mt-8">
@@ -69,7 +69,6 @@ const Plans = ref([
     </div>
     <div class="d-flex">
         <v-btn class="align b l" variant="text">Go Back</v-btn>
-        <v-spacer/>
         <v-btn class="align elevation-0 b r" color="#02295a">Next Step</v-btn>
     </div>
 </template>
@@ -96,7 +95,7 @@ const Plans = ref([
         font-weight: bold;
         font-size: 1.1rem;
     }
-    .detail{
+    .pDetail{
         color: var(--cool-gray);
         font-weight: 500;
     }
