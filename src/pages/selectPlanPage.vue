@@ -15,25 +15,25 @@ const Plans = ref([
         id: 1,
         img: arcade,
         title: 'Arcade',
-        monthly: '9',
-        yearly: '90',
-        discount: '2',
+        monthly: 9,
+        yearly: 90,
+        discount: 2,
     },
     {
         id: 2,
         img: advanced,
         title: 'Advanced',
-        monthly: '12',
-        yearly: '120',
-        discount: '2',
+        monthly: 12,
+        yearly: 120,
+        discount: 2,
     },
     {
         id: 3,
         img: pro,
         title: 'Pro',
-        monthly: '15',
-        yearly: '150',
-        discount: '2',
+        monthly: 15,
+        yearly: 150,
+        discount: 2,
     },
 ]);
 
@@ -89,6 +89,7 @@ const Plans = ref([
     }
     .activeC{
         border-color: var(--marineblue) !important;
+        background-color: var(--selected-blue);
     }
     .title{
         color: var(--marineblue);
