@@ -28,7 +28,9 @@
     />
     <div class="d-flex">
         <v-spacer/>
-        <v-btn class="align elevation-0 b r" color="#02295a">Next</v-btn>
+        <router-link to="select-plan">
+            <v-btn class="align elevation-0 b r" color="#02295a">Next</v-btn>
+        </router-link>
     </div>
 </template>
 

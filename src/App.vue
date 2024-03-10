@@ -2,6 +2,9 @@
 import { RouterView } from 'vue-router';
 import navbarItems from './components/navbarItems.vue';
 import { ref } from 'vue'
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
 
 const links = ref([
   { num: 1, title: 'your info', path: '/'},
@@ -9,6 +12,7 @@ const links = ref([
   { num: 3, title: 'addons', path: '/add-ons' },
   { num: 4, title: 'summary', path: '/summary' },
 ]);
+
 
 </script>
 
@@ -23,6 +27,7 @@ const links = ref([
             :num="l.num"
             :title="l.title"
             :path="l.path"
+            :current="route.path"
           />
         </v-col>
         <v-col class="ma-6 pl-12 relative">

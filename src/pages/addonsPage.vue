@@ -61,8 +61,12 @@ const addOnds = ref([
     </v-card>
 
     <div class="d-flex">
-        <v-btn class="align b l" variant="text">Go Back</v-btn>
-        <v-btn class="align elevation-0 b r" color="#02295a">Next Step</v-btn>
+        <router-link to="/select-plan">
+            <v-btn class="align b l" variant="text">Go Back</v-btn>
+        </router-link>
+        <router-link to="/summary">
+            <v-btn class="align elevation-0 b r" color="#02295a">Next Step</v-btn>
+        </router-link>
     </div>
 </template>
 

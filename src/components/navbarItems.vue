@@ -7,21 +7,20 @@ defineProps({
     num: Number,
     title: String,
     path: String,
+    current: String,
 })
 
 </script>
 
 
 <template>
-    <RouterLink :to="path" active-class="active">
-        <div class="d-flex mb-4">
-            <div class="circle">{{num}}</div>
-            <div class="detail ml-2">
-                <p class="step">step {{ num }}</p>
-                <p class="title">{{title}}</p>
-            </div>
+    <div class="d-flex mb-4" :class="current === path ? 'active' : ''">
+        <div class="circle">{{num}}</div>
+        <div class="detail ml-2">
+            <p class="step">step {{ num }}</p>
+            <p class="title">{{title}}</p>
         </div>
-    </RouterLink>
+    </div>
 </template>
 
 
