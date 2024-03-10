@@ -82,4 +82,8 @@ const links = ref([
     position: absolute;
   }
 }
+.pDetail{
+  color: var(--cool-gray);
+  font-weight: 500;
+}
 </style>

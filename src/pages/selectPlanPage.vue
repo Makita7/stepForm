@@ -96,9 +96,5 @@ const Plans = ref([
         font-weight: bold;
         font-size: 1.1rem;
     }
-    .pDetail{
-        color: var(--cool-gray);
-        font-weight: 500;
-    }
 
 </style>
