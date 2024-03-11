@@ -1,38 +1,25 @@
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
+import { usePurchaseStore } from '../stores/purchaseStore';
 
 //TODO: this variable should be in pinia so the data is shared
-let yearPlan = ref(false);
+const addOnsCopy: Ref<addOns[]> = ref([]);
+const store = usePurchaseStore();
 
-const addOnds = ref([
-    {
-        title: 'Online service',
-        detail: 'Access to multiplayer games',
-        monthly: 1,
-        yearly: 10,
-        id: 1,
-        added: false,
-    },
-    {
-        title: 'Larger storage',
-        detail: 'Extr 1TB of cloud save',
-        monthly: 2,
-        yearly: 20,
-        id: 2,
-        added: false,
-    },
-    {
-        title: 'Customizable profile',
-        detail: 'Custom theme on your profile',
-        monthly: 2,
-        yearly: 20,
-        id: 3,
-        added: false,
-    },
-]);
+interface addOns {
+    title: string,
+    detail: string,
+    monthly: number,
+    yearly: number,
+    id: number,
+    added: boolean,
+}
 
-// let addOnsCopy = [];
+onMounted(() => {
+    addOnsCopy.value = store.addOnds;
+});
+
 
 // TODO: make a copy of the addOns and save the original list in pinia to you can have a copy before saving the list
 
@@ -43,28 +30,29 @@ const addOnds = ref([
     <p class="detail mb-8">Add-ons help enhance your gaming experience.</p>
 
     <v-card
-        v-for="ons in addOnds"
+        v-for="ons in addOnsCopy"
         :key="ons.id"
         @click="ons.added = !ons.added"
-        class="d-flex align-center mt-4 pa-4 ons"
+        class="d-flex align-center mt-4 pa-1 ons"
         :class="ons.added ? 'active' : 'no'"
         variant="outlined"
     >
+        <v-checkbox :v-model="ons.added" class="mx-2"/>
         <input type="checkbox" v-model="ons.added" class="mr-4" />
         <div>
             <p class="onsTitle">{{ ons.title }}</p>
             <p class="detail">{{ ons.detail }}</p>
         </div>
         <v-spacer/>
-        <p class="price mr-2" v-if="!yearPlan">+${{ ons.monthly }}/mo</p>
-        <p class="price mr-2" v-if="yearPlan">+${{ ons.yearly }}/yr</p>
+        <p class="price mr-2" v-if="!store.yearPlan">+${{ ons.monthly }}/mo</p>
+        <p class="price mr-2" v-if="store.yearPlan">+${{ ons.yearly }}/yr</p>
     </v-card>
 
     <div class="d-flex">
-        <router-link to="/select-plan">
+        <router-link to="/select-plan" @click="store.SetaddOns(addOnsCopy)">
             <v-btn class="align b l" variant="text">Go Back</v-btn>
         </router-link>
-        <router-link to="/summary">
+        <router-link to="/summary" @click="store.SetaddOns(addOnsCopy)">
             <v-btn class="align elevation-0 b r" color="#02295a">Next Step</v-btn>
         </router-link>
     </div>

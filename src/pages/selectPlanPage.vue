@@ -1,42 +1,8 @@
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import arcade from '../assets/icon-arcade.svg';
-import advanced from '../assets/icon-advanced.svg';
-import pro from '../assets/icon-pro.svg'
+    import { usePurchaseStore } from '@/stores/purchaseStore';
 
-let selected = ref('');
-let yearPlan = ref(false);
-
-const selectPlan = (plan: string) => selected.value = plan;
-
-const Plans = ref([
-    {
-        id: 1,
-        img: arcade,
-        title: 'Arcade',
-        monthly: 9,
-        yearly: 90,
-        discount: 2,
-    },
-    {
-        id: 2,
-        img: advanced,
-        title: 'Advanced',
-        monthly: 12,
-        yearly: 120,
-        discount: 2,
-    },
-    {
-        id: 3,
-        img: pro,
-        title: 'Pro',
-        monthly: 15,
-        yearly: 150,
-        discount: 2,
-    },
-]);
-
+    const store = usePurchaseStore();
 </script>
 
 <template>
@@ -45,26 +11,26 @@ const Plans = ref([
 
     <div class="d-flex justify-space-between">
         <v-card
-            @click="selectPlan(p.title)"
-            v-for="p in Plans"
+            @click="store.selectPlan(p.title)"
+            v-for="p in store.Plans"
             :key="p.id"
             variant="outlined"
             width="30%"
             class="roundm pa-4 planCards"
-            :class="p.title == selected ? 'activeC' : ''"
+            :class="p.title == store.selected ? 'activeC' : ''"
         >
             <img :alt="p.title" :src="p.img" />
             <p class="mt-4 title">{{ p.title }}</p>
-            <p class="pDetail" v-if="yearPlan">{{ p.yearly }} /yr</p>
-            <p class="pDetail" v-if="yearPlan">{{ p.discount }} months free</p>
+            <p class="pDetail" v-if="store.yearPlan">{{ p.yearly }} /yr</p>
+            <p class="pDetail" v-if="store.yearPlan">{{ p.discount }} months free</p>
             <p class="pDetail" v-else>{{ p.monthly }} /mo</p>
         </v-card>
     </div>
     <div class="d-flex align-center switchDiv mt-8">
         <v-spacer/>
-        <p class="font-weight-bold" :class="!yearPlan ? 'active' : 'inactive'">Monthly</p>
-        <v-switch color="var(--marineblue)" class="mx-2" v-model="yearPlan" hide-details/>
-        <p class="font-weight-bold" :class="yearPlan ? 'active' : 'inactive'">Yearly</p>
+        <p class="font-weight-bold" :class="!store.yearPlan ? 'active' : 'inactive'">Monthly</p>
+        <v-switch color="var(--marineblue)" class="mx-2" v-model="store.yearPlan" hide-details/>
+        <p class="font-weight-bold" :class="store.yearPlan ? 'active' : 'inactive'">Yearly</p>
         <v-spacer/>
     </div>
     <div class="d-flex">
@@ -100,5 +66,4 @@ const Plans = ref([
         font-weight: bold;
         font-size: 1.1rem;
     }
-
 </style>
