@@ -1,42 +1,61 @@
 
 <script setup lang="ts">
-import { ref } from 'vue';
+    import { usePurchaseStore } from '@/stores/purchaseStore';
+    import { onMounted, ref } from 'vue';
 
-let ex4 =ref(true)
+    const store = usePurchaseStore();
+
+    const addOns = store.addOnds.filter(i => i.added);
+    const plan = store.Plans.filter(i => i.title === store.selected)
+    let total: ref<number> = ref(0);
+
+    function sumTotal(){
+        addOns.forEach(el => {
+            store.yearPlan ? total.value += el.yearly : total.value += el.monthly;
+        });
+
+        store.yearPlan ? total.value += plan[0].yearly :total.value += plan[0].monthly;
+    }
+
+    onMounted(() => sumTotal());
+
 </script>
 
 <template>
-    <v-checkbox
-            v-model="ex4"
-            color="red-darken-3"
-            label="red-darken-3"
-            value="red-darken-3"
-            hide-details
-          ></v-checkbox>
     <h1 class="titles">Summary</h1>
-    <p class="detail mb-8">Double-check everything looks OK before confirming.</p>
+    <p class="detail mb-6">Double-check everything looks OK before confirming.</p>
 
     <v-card class="sumC elevation-0 roundm" width="90%">
         <div class="d-flex align-center h pt-4">
             <v-col class="ml-3">
-                <p class="titles plan">Arcade (Monthly)</p>
+                <p class="titles plan">{{ plan[0].title }} ({{ store.yearPlan ? 'Yearly' : 'Monthly'}})</p>
                 <router-link to="/" class="detail">Change</router-link>
             </v-col>
             <v-spacer/>
-            <p class="pDetail mr-6 font-weight-bold plan">$9/mo</p>
+            <p v-if="!store.yearPlan" class="pDetail mr-6 font-weight-bold plan">${{ plan[0].monthly }}/mo</p>
+            <p v-if="store.yearPlan" class="pDetail mr-6 font-weight-bold plan">${{ plan[0].yearly }}/yr</p>
         </div>
         <v-divider class="mx-8 mt-4"/>
-        <!-- TODO: this element should have a v-for for each element in add ons -->
-        <div class="d-flex align-center pl-3 h">
-            <p class="detail ml-3">Online service</p>
+        <v-col class="ml-3 pb-0">
+            <div class="d-flex">
+                <p class="detail">Name: <b class="blue">{{ store.clientName }}</b></p>
+                <v-spacer/>
+                <p class="mr-6 detail">Phone: <b class="blue">{{ store.clientNumber }}</b></p>
+            </div>
+            <p class="detail">Email: <b class="blue">{{ store.clientEmail }}</b></p>
+        </v-col>
+        <v-divider class="mx-8 mt-4"/>
+        <div v-for="ons in addOns" :key="ons.id" class="d-flex align-center pl-3 h">
+            <p class="detail ml-3">{{ ons.title }}</p>
             <v-spacer/>
-            <p class="pDetail mr-6">$1/mo</p>
+            <p v-if="!store.yearPlan" class="pDetail mr-6">${{ ons.monthly }}/mo</p>
+            <p v-if="store.yearPlan" class="pDetail mr-6">${{ ons.yearly }}/yr</p>
         </div>
     </v-card>
     <div class="d-flex total align-center h pl-3">
-        <p class="detail ml-3">Total (per month)</p>
+        <p class="detail ml-3">Total (per {{ store.yearPlan ? 'year' : 'month'}})</p>
         <v-spacer/>
-        <p class="title mr-6">+$12/mo</p>
+        <p class="title mr-6">+${{ total }}/{{ store.yearPlan ? 'yr' : 'mo'}}</p>
     </div>
 
     <div class="d-flex mx-2">
@@ -69,6 +88,9 @@ let ex4 =ref(true)
             font-size: 1.5rem;
             font-weight: bold;
         }
+    }
+    .blue{
+        color: var(--marineblue);
     }
 
     :deep(){

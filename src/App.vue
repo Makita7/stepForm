@@ -30,7 +30,7 @@ const links = ref([
             :current="route.path"
           />
         </v-col>
-        <v-col class="ma-6 pl-12 relative">
+        <v-col class="ma-6 pl-12 relative min-35">
           <RouterView/>
         </v-col>
       </div>
@@ -55,9 +55,13 @@ const links = ref([
   }
 
   .cardNav{
-    height: 35rem;
+    min-height: 36rem;
     background-image: url('./assets/bg-sidebar-desktop.svg');
     background-size: cover;
+  }
+
+  .min-35{
+    min-height: 36rem;
   }
 </style>
 
