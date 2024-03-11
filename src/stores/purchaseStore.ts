@@ -9,9 +9,9 @@ export const usePurchaseStore = defineStore('purchaseStore', () => {
 
     let clientName: Ref<string> = ref('');
 
-    let clientEmail: Ref<string> = ref(null);
+    let clientEmail: Ref<string | null> = ref(null);
 
-    let clientNumber: Ref<number | null> = ref('');
+    let clientNumber: Ref<number | null> = ref(null);
 
     const Plans = ref([
         {
@@ -75,6 +75,15 @@ export const usePurchaseStore = defineStore('purchaseStore', () => {
         addOnds.value = copy
     }
 
+    function reset(){
+        yearPlan.value = false;
+        clientName.value = '';
+        clientEmail.value = null;
+        clientNumber.value = null;
+        selected.value = '';
+        addOnds.value.map(i => i.added = false);
+    }
 
-    return { yearPlan, clientName, clientEmail, clientNumber, Plans, selected, selectPlan, addOnds, SetaddOns,  }
+
+    return { yearPlan, clientName, clientEmail, clientNumber, Plans, selected, selectPlan, addOnds, SetaddOns, reset }
 })

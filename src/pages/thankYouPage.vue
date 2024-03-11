@@ -1,12 +1,35 @@
 
 <script setup lang="ts">
+    import { usePurchaseStore } from '@/stores/purchaseStore';
+import { onMounted, ref } from 'vue';
+
+    const store = usePurchaseStore();
+    let zoomIn: boolean = ref(false)
+    let animateIn: boolean = ref(false)
+
+    onMounted(() => {
+        setTimeout(() => zoomIn.value = true, 1000)
+        setTimeout(() => animateIn.value = true, 1100);
+    })
+
 </script>
 
 <template>
     <div class="d-flex mx-4 thx">
-        <img class="mx-auto" src="../assets/icon-thank-you.svg" alt="thank-you" />
-        <p class="title">Thank You!</p>
-        <p class="detail">Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at support@loremgaming.com</p>
+        <Transition name="zoomIn">
+            <img v-if="zoomIn" class="mx-auto" src="../assets/icon-thank-you.svg" alt="thank-you" />
+        </Transition>
+        <Transition name="fadeIn">
+            <div v-if="animateIn">
+                <p class="title">Thank You!</p>
+                <p class="detail">Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at support@loremgaming.com</p>
+            </div>
+        </Transition>
+    </div>
+    <div class="d-flex">
+        <router-link v-if="animateIn" class="ml-auto mr-0" to="/" @click="store.reset()">
+            <v-btn variant="text" color="var(--purplish-blue)">Restart</v-btn>
+        </router-link>
     </div>
 </template>
 
@@ -24,5 +47,25 @@
             font-weight: bold;
             font-size: 2rem;
         }
+    }
+
+    .fadeIn-enter-active, .fadeIn-leave-active {
+        transition: all 3s ease-out;
+        opacity: 1;
+    }
+
+    .fadeIn-enter-from, .fadeIn-leave-to {
+        opacity: 0;
+    }
+
+    .zoomIn-enter-active, .zoomIn-leave-active {
+        transition: all 2s ease-out;
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .zoomIn-enter-from, .zoomIn-leave-to {
+        opacity: 0;
+        transform: scale(1.5);
     }
 </style>
