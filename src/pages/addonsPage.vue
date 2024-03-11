@@ -3,7 +3,6 @@
 import { onMounted, ref } from 'vue';
 import { usePurchaseStore } from '../stores/purchaseStore';
 
-//TODO: this variable should be in pinia so the data is shared
 const addOnsCopy: Ref<addOns[]> = ref([]);
 const store = usePurchaseStore();
 
@@ -19,9 +18,6 @@ interface addOns {
 onMounted(() => {
     addOnsCopy.value = store.addOnds;
 });
-
-
-// TODO: make a copy of the addOns and save the original list in pinia to you can have a copy before saving the list
 
 </script>
 

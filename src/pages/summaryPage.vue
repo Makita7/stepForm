@@ -4,10 +4,10 @@
     import { onMounted, ref } from 'vue';
 
     const store = usePurchaseStore();
-
     const addOns = store.addOnds.filter(i => i.added);
     const plan = store.Plans.filter(i => i.title === store.selected)
     let total: ref<number> = ref(0);
+    let dialog: boolean = ref(false);
 
     function sumTotal(){
         addOns.forEach(el => {
@@ -62,8 +62,18 @@
         <router-link to="/add-ons">
             <v-btn class="align b l" variant="text">Go Back</v-btn>
         </router-link>
-        <v-btn class="align elevation-0 b r w" color="var(--purplish-blue)" size="large">Confirm</v-btn>
+        <v-btn @click="dialog = true" class="align elevation-0 b r w" color="var(--purplish-blue)" size="large">Confirm</v-btn>
     </div>
+    <v-dialog v-model="dialog" width="20rem">
+        <v-card title="Are you sure?">
+            <div class="d-flex justify-space-evenly w-100 mb-4 mt-4">
+                <v-btn @click="dialog = false" color="var(--purplish-blue)" variant="text" class="elevation-0">No</v-btn>
+                <router-link to="/thank-you">
+                    <v-btn color="var(--purplish-blue)" variant="text" class="elevation-0">Yes</v-btn>
+                </router-link>
+            </div>
+        </v-card>
+    </v-dialog>
 </template>
 
 <style lang="scss" scoped>
