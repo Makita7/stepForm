@@ -17,6 +17,11 @@
         store.yearPlan ? total.value += plan[0].yearly :total.value += plan[0].monthly;
     }
 
+    const formatNum = (n:number) =>{
+        const pattern = /(\d{3})(\d{3})(\d{4})/;
+        return String(n).replace(pattern,'($1) $2-$3');
+    }
+
     onMounted(() => sumTotal());
 
 </script>
@@ -24,7 +29,7 @@
 <template>
     <h1 class="titles">Summary</h1>
     <p class="detail mb-6">Double-check everything looks OK before confirming.</p>
-
+    {{ formatNum(store.clientNumber) }}
     <v-card class="sumC elevation-0 roundm" width="90%">
         <div class="d-flex align-center h pt-4">
             <v-col class="ml-3">
@@ -38,11 +43,11 @@
         <v-divider class="mx-8 mt-4"/>
         <v-col class="ml-3 pb-0">
             <div class="d-flex">
-                <p class="detail">Name: <b class="blue">{{ store.clientName }}</b></p>
+                <p class="detail">Name: <b class="blue pl-1">{{ store.clientName }}</b></p>
                 <v-spacer/>
-                <p class="mr-6 detail">Phone: <b class="blue">{{ store.clientNumber }}</b></p>
+                <p class="mr-6 detail">Phone: <b class="blue pl-1">{{ formatNum(store.clientNumber) }}</b></p>
             </div>
-            <p class="detail">Email: <b class="blue">{{ store.clientEmail }}</b></p>
+            <p class="detail">Email: <b class="blue pl-1">{{ store.clientEmail }}</b></p>
         </v-col>
         <v-divider class="mx-8 mt-4"/>
         <div v-for="ons in addOns" :key="ons.id" class="d-flex align-center pl-3 h">

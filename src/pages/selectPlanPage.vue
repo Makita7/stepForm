@@ -3,6 +3,7 @@
     import { usePurchaseStore } from '@/stores/purchaseStore';
 
     const store = usePurchaseStore();
+
 </script>
 
 <template>
@@ -38,7 +39,7 @@
             <v-btn class="align b l" variant="text">Go Back</v-btn>
         </router-link>
         <router-link to="/add-ons">
-            <v-btn class="align elevation-0 b r" color="#02295a">Next Step</v-btn>
+            <v-btn :disabled="!store.selected" class="align elevation-0 b r" color="#02295a">Next Step</v-btn>
         </router-link>
     </div>
 </template>
