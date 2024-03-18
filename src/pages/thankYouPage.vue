@@ -1,7 +1,8 @@
 
 <script setup lang="ts">
     import { usePurchaseStore } from '@/stores/purchaseStore';
-import { onMounted, ref } from 'vue';
+    import { onMounted, ref } from 'vue';
+    import { useDisplay } from 'vuetify';
 
     const store = usePurchaseStore();
     let zoomIn: boolean = ref(false)
@@ -11,6 +12,8 @@ import { onMounted, ref } from 'vue';
         setTimeout(() => zoomIn.value = true, 1000)
         setTimeout(() => animateIn.value = true, 1100);
     })
+
+    const { width } = useDisplay();
 
 </script>
 
@@ -22,7 +25,7 @@ import { onMounted, ref } from 'vue';
         <Transition name="fadeIn">
             <div v-if="animateIn">
                 <p class="title">Thank You!</p>
-                <p class="detail">Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at support@loremgaming.com</p>
+                <p class="detail" :class="width <= 1180 ? 'tablet mx-auto' : ''">Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at support@loremgaming.com</p>
             </div>
         </Transition>
     </div>
@@ -46,6 +49,9 @@ import { onMounted, ref } from 'vue';
             color: var(--marineblue);
             font-weight: bold;
             font-size: 2rem;
+        }
+        .tablet{
+            width: 80% !important;
         }
     }
 

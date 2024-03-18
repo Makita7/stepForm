@@ -1,26 +1,30 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue'
-import { RouterLink } from 'vue-router';
 
 defineProps({
     num: Number,
     title: String,
     path: String,
     current: String,
+    cell: Boolean,
 })
 
 </script>
 
 
 <template>
-    <div class="d-flex mb-4" :class="current === path ? 'active' : ''">
+    <div v-if="!cell" class="d-flex mb-4" :class="current === path ? 'active' : ''">
         <div class="circle">{{num}}</div>
         <div class="detail ml-2">
             <p class="step">step {{ num }}</p>
             <p class="title">{{title}}</p>
         </div>
     </div>
+    <div v-else :class="current === path ? 'active' : ''">
+        <div class="circleCell">{{num}}</div>
+    </div>
+
 </template>
 
 
@@ -38,6 +42,18 @@ defineProps({
     background-color: rgba(255, 255, 255, 0);
     color: white;
 }
+.circleCell{
+    border: 2px var(--light-blue) solid;
+    border-radius: 5rem;
+    height: 3rem;
+    width: 3rem;
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    margin: 0.5rem;
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+}
 .detail{
     color: white;
     text-transform: uppercase;
@@ -51,6 +67,10 @@ defineProps({
 }
 .active{
     .circle{
+        color: black;
+        background-color: var(--light-blue);
+    }
+    .circleCell{
         color: black;
         background-color: var(--light-blue);
     }

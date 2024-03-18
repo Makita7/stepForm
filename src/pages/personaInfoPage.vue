@@ -14,8 +14,6 @@
         return pattern.test(value) || `Invalid email, please try again...`;
     }
     const isNumber = (value:number) =>{
-        // const pattern = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
-        // return pattern.test(String(value)) || 'Invalid phone number, please try again...';
         return String(value).length === 10 || 'Invalid phone number, please try again...';
     }
 
