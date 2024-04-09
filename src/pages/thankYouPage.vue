@@ -1,10 +1,12 @@
 
 <script setup lang="ts">
     import { usePurchaseStore } from '@/stores/purchaseStore';
+    import { useNavStore } from '@/stores/NavStore';
     import { onMounted, ref } from 'vue';
     import { useDisplay } from 'vuetify';
 
     const store = usePurchaseStore();
+    const navStore = useNavStore();
     let zoomIn: boolean = ref(false)
     let animateIn: boolean = ref(false)
 
@@ -30,7 +32,7 @@
         </Transition>
     </div>
     <div class="d-flex">
-        <router-link v-if="animateIn" class="ml-auto mr-0" to="/" @click="store.reset()">
+        <router-link v-if="animateIn" :class="navStore.width > 400 ? 'ml-auto mr-0' : 'ml-auto mr-auto' " to="/" @click="store.reset()">
             <v-btn variant="text" color="var(--purplish-blue)">Restart</v-btn>
         </router-link>
     </div>

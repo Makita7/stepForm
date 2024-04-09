@@ -12,21 +12,25 @@
     <h1 class="titles">select your plan</h1>
     <p class="detail mb-8">You have the option of monthly or yearly billing.</p>
 
-    <div class="d-flex justify-space-between">
+    <div class="d-flex justify-space-between" :class="navStore.width < 400 ? 'cell' : ''">
         <v-card
             @click="store.selectPlan(p.title)"
             v-for="p in store.Plans"
             :key="p.id"
             variant="outlined"
-            width="30%"
+            :width="navStore.width < 400 ? '100%' : '30%'"
             class="roundm pa-4 planCards"
             :class="p.title == store.selected ? 'activeC' : ''"
         >
-            <img :alt="p.title" :src="p.img" />
-            <p class="mt-4 title">{{ p.title }}</p>
-            <p class="pDetail" v-if="store.yearPlan">{{ p.yearly }} /yr</p>
-            <p class="pDetail" v-if="store.yearPlan">{{ p.discount }} months free</p>
-            <p class="pDetail" v-else>{{ p.monthly }} /mo</p>
+            <div :class="navStore.width < 400 ? 'd-flex' : ''">
+                <img :alt="p.title" :src="p.img" />
+                <div :class="navStore.width < 400 ? 'ml-4' : ''">
+                    <p class="title" :class="navStore.width < 400 ? '' : 'mt-4'">{{ p.title }}</p>
+                    <p class="pDetail" v-if="store.yearPlan">{{ p.yearly }} /yr</p>
+                    <p class="pDetail" v-if="store.yearPlan">{{ p.discount }} months free</p>
+                    <p class="pDetail" v-else>{{ p.monthly }} /mo</p>
+                </div>
+            </div>
         </v-card>
     </div>
     <div class="d-flex align-center switchDiv mt-8">
@@ -69,4 +73,11 @@
         font-weight: bold;
         font-size: 1.1rem;
     }
-</style>@/stores/NavStore
+    .d-flex.justify-space-between.cell {
+        flex-direction: column !important;
+        margin-bottom: 1rem;
+    }
+    .cell .roundm{
+        margin-bottom: 1rem;
+    }
+</style>

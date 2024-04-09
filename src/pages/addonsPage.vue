@@ -26,7 +26,6 @@ onMounted(() => {
 <template>
     <h1 class="titles">Pick add-ons</h1>
     <p class="detail mb-8">Add-ons help enhance your gaming experience.</p>
-
     <v-card
         v-for="ons in addOnsCopy"
         :key="ons.id"
@@ -35,8 +34,7 @@ onMounted(() => {
         :class="ons.added ? 'active' : 'no'"
         variant="outlined"
     >
-        <v-checkbox :v-model="ons.added" class="mx-2"/>
-        <input type="checkbox" v-model="ons.added" class="mr-4" />
+        <input color="red" type="checkbox" v-model="ons.added" class="mr-4" />
         <div>
             <p class="onsTitle">{{ ons.title }}</p>
             <p class="detail">{{ ons.detail }}</p>
@@ -65,7 +63,7 @@ onMounted(() => {
             font-size: 1.1rem;
         }
         .price{
-            color: var(--cool-gray);
+            color: var(--purplish-blue);
             font-weight: 500;
         }
     }
@@ -73,4 +71,19 @@ onMounted(() => {
         border-color: var(--marineblue) !important;
         background-color: var(--selected-blue);
     }
-</style>@/stores/NavStore
+    @media(max-width: 400px){
+        .detail{
+            font-size: 14px;
+        }
+        .ons{
+            padding: 0.5rem !important;
+        }
+    }
+    input[type=checkbox] {
+        transform: scale(1.3);
+    }
+    input[type=checkbox]:checked {
+        accent-color:  var(--purplish-blue) !important;
+        color: #ffffff !important;
+    }
+</style>

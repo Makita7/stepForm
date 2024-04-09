@@ -23,7 +23,7 @@
 </script>
 
 <template>
-    <div class="callNav">
+    <div class="callNav" v-if="navStore.route.path !== '/thank-you'">
         <div v-if="navStore.route.path === navStore.links[0].path" class="d-flex">
             <v-spacer/>
             <v-btn :disabled="!navStore.personalComplete" class="align elevation-0 b r" color="#02295a">

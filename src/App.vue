@@ -53,7 +53,7 @@ const { width } = useDisplay();
             :current="route.path"
           />
         </v-col>
-        <v-col class="ma-6 pl-md-12 relative min-35">
+        <v-col class="pl-md-12 relative min-35" :class="width > 400 ? 'ma-6' : ''">
           <RouterView/>
         </v-col>
       </div>
