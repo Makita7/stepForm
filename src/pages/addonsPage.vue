@@ -2,9 +2,11 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { usePurchaseStore } from '../stores/purchaseStore';
+import { useNavStore } from '@/stores/NavStore';
 
 const addOnsCopy: Ref<addOns[]> = ref([]);
 const store = usePurchaseStore();
+const navStore = useNavStore();
 
 interface addOns {
     title: string,
@@ -44,7 +46,7 @@ onMounted(() => {
         <p class="price mr-2" v-if="store.yearPlan">+${{ ons.yearly }}/yr</p>
     </v-card>
 
-    <div class="d-flex">
+    <div class="d-flex" v-if="navStore.width > 400">
         <router-link to="/select-plan" @click="store.SetaddOns(addOnsCopy)">
             <v-btn class="align b l" variant="text">Go Back</v-btn>
         </router-link>
@@ -71,4 +73,4 @@ onMounted(() => {
         border-color: var(--marineblue) !important;
         background-color: var(--selected-blue);
     }
-</style>
+</style>@/stores/NavStore

@@ -1,11 +1,13 @@
 
 <script setup lang="ts">
     import { usePurchaseStore } from '@/stores/purchaseStore';
-    import { ref } from 'vue';
+    import { onMounted, ref, watch } from 'vue';
+    import { useNavStore } from '@/stores/NavStore';
 
     const store = usePurchaseStore();
-    let completed: ref<boolean> = ref(false);
     const erMsg: ref<string> = ref('Field is obligatory');
+    const navStore = useNavStore();
+    let completed: ref<boolean> = ref(false);
 
     //rules
     const isText = (value:string) => value  ? true : erMsg.value;
@@ -17,16 +19,16 @@
         return String(value).length === 10 || 'Invalid phone number, please try again...';
     }
 
+    onMounted(() => [
+        completed.value = navStore.personalComplete
+    ])
 
 </script>
-
-// TODO: add validations to make sure all the information has been completed...
 
 <template>
     <h1 class="titles">personal info</h1>
     <p class="detail mb-8">Please provide your name, email address, and phone number.</p>
-
-    <v-form v-model="completed">
+    <v-form v-model="navStore.personalComplete">
         <v-text-field
             v-model="store.clientName"
             label="Name *"
@@ -54,10 +56,10 @@
             class="mt-2"
             :rules="[isText, isNumber]"
         />
-        <div class="d-flex">
+        <div v-if="navStore.width> 400" class="d-flex">
             <v-spacer/>
             <router-link to="select-plan">
-                <v-btn :disabled="!completed" class="align elevation-0 b r" color="#02295a">Next</v-btn>
+                <v-btn :disabled="!navStore.personalComplete" class="align elevation-0 b r" color="#02295a">Next</v-btn>
             </router-link>
         </div>
     </v-form>

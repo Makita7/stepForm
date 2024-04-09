@@ -5,7 +5,7 @@ import advanced from '../assets/icon-advanced.svg';
 import pro from '../assets/icon-pro.svg';
 
 export const usePurchaseStore = defineStore('purchaseStore', () => {
-    let yearPlan: ref<boolean> = ref(true);
+    let yearPlan: ref<boolean> = ref(false);
 
     let clientName: Ref<string> = ref('');
 

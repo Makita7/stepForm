@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
-import navbarItems from './components/navbarItems.vue';
 import { ref } from 'vue'
 import { useRoute } from 'vue-router';
 import { useDisplay } from 'vuetify';
+import navbarItems from './components/navbarItems.vue';
+import actionBarCell from './components/actionBarCell.vue';
 
 const route = useRoute();
 
@@ -20,22 +21,27 @@ const { width } = useDisplay();
 
 <template>
   <div class="d-flex justify-center mt-15">
-  <div class="cardNavCell">
-    <div class="d-flex justify-center">
-      <navbarItems
-        v-for="l in links"
-        :cell="true"
-        :key="l.num"
-        :num="l.num"
-        :title="l.title"
-        :path="l.path"
-        :current="route.path"
-        style="margin-top: 6%;"
-      />
+    <div class="cardNavCell">
+      <div class="d-flex justify-center">
+        <navbarItems
+          v-for="l in links"
+          :cell="true"
+          :key="l.num"
+          :num="l.num"
+          :title="l.title"
+          :path="l.path"
+          :current="route.path"
+          style="margin-top: 6%;"
+        />
+      </div>
     </div>
-  </div>
-  <!-- {{ width }} -->
-    <v-card :width="width >= 1180 ? '70rem' : '90%'" min-height="30rem" class="roundm pa-3" :class="width <= 1180 ? 'marT' : ''">
+
+    <v-card
+      :width="width >= 1180 ? '70rem' : '90%'"
+      min-height="30rem"
+      class="roundm pa-3 mt-sm-3"
+      :class="width <= 1180 ? 'marT mb-8' : ''"
+    >
       <div class="d-flex">
         <v-col cols="4" class="roundm cardNav pa-10" v-if="width >= 1180">
           <navbarItems
@@ -53,6 +59,7 @@ const { width } = useDisplay();
       </div>
     </v-card>
   </div>
+  <actionBarCell v-if="width < 400" />
 </template>
 
 <style lang="scss" scoped>
@@ -92,6 +99,17 @@ const { width } = useDisplay();
 
   .marT{
     margin-top: 6rem !important;
+  }
+  @media (max-width: 400px) {
+    body{
+      min-height: auto !important;
+    }
+    .marT{
+      margin-top: 3rem !important;
+    }
+    .min-35{
+      min-height: auto;
+    }
   }
 
 </style>

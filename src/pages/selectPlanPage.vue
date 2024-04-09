@@ -1,8 +1,10 @@
 
 <script setup lang="ts">
     import { usePurchaseStore } from '@/stores/purchaseStore';
+    import { useNavStore } from '@/stores/NavStore';
 
     const store = usePurchaseStore();
+    const navStore = useNavStore();
 
 </script>
 
@@ -34,7 +36,7 @@
         <p class="font-weight-bold" :class="store.yearPlan ? 'active' : 'inactive'">Yearly</p>
         <v-spacer/>
     </div>
-    <div class="d-flex">
+    <div class="d-flex" v-if="navStore.width > 400">
         <router-link to="/">
             <v-btn class="align b l" variant="text">Go Back</v-btn>
         </router-link>
@@ -67,4 +69,4 @@
         font-weight: bold;
         font-size: 1.1rem;
     }
-</style>
+</style>@/stores/NavStore

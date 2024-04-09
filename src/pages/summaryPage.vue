@@ -1,9 +1,11 @@
 
 <script setup lang="ts">
     import { usePurchaseStore } from '@/stores/purchaseStore';
+    import { useNavStore } from '@/stores/NavStore';
     import { onMounted, ref } from 'vue';
 
     const store = usePurchaseStore();
+    const navStore = useNavStore();
     const addOns = store.addOnds.filter(i => i.added);
     const plan = store.Plans.filter(i => i.title === store.selected)
     let total: ref<number> = ref(0);
@@ -29,7 +31,6 @@
 <template>
     <h1 class="titles">Summary</h1>
     <p class="detail mb-6">Double-check everything looks OK before confirming.</p>
-    {{ formatNum(store.clientNumber) }}
     <v-card class="sumC elevation-0 roundm" width="90%">
         <div class="d-flex align-center h pt-4">
             <v-col class="ml-3">
@@ -63,7 +64,7 @@
         <p class="title mr-6">+${{ total }}/{{ store.yearPlan ? 'yr' : 'mo'}}</p>
     </div>
 
-    <div class="d-flex mx-2">
+    <div class="d-flex mx-2" v-if="navStore.width > 400">
         <router-link to="/add-ons">
             <v-btn class="align b l" variant="text">Go Back</v-btn>
         </router-link>
