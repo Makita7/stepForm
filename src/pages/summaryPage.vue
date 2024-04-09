@@ -71,7 +71,7 @@
         <v-btn @click="dialog = true" class="align elevation-0 b r w" color="var(--purplish-blue)" size="large">Confirm</v-btn>
     </div>
     <v-dialog v-model="dialog" width="20rem">
-        <v-card title="Are you sure?">
+        <v-card class="text-center" title="Are you sure?">
             <div class="d-flex justify-space-evenly w-100 mb-4 mt-4">
                 <v-btn @click="dialog = false" color="var(--purplish-blue)" variant="text" class="elevation-0">No</v-btn>
                 <router-link to="/thank-you">

@@ -30,11 +30,11 @@ onMounted(() => {
         v-for="ons in addOnsCopy"
         :key="ons.id"
         @click="ons.added = !ons.added"
-        class="d-flex align-center mt-4 pa-1 ons"
+        class="d-flex align-center mt-4 pa-1 pa-lg-3 ons"
         :class="ons.added ? 'active' : 'no'"
         variant="outlined"
     >
-        <input color="red" type="checkbox" v-model="ons.added" class="mr-4" />
+        <input color="red" type="checkbox" v-model="ons.added" class="ma-2 mr-4" />
         <div>
             <p class="onsTitle">{{ ons.title }}</p>
             <p class="detail">{{ ons.detail }}</p>
