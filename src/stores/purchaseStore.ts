@@ -5,13 +5,13 @@ import advanced from '../assets/icon-advanced.svg';
 import pro from '../assets/icon-pro.svg';
 
 export const usePurchaseStore = defineStore('purchaseStore', () => {
-    let yearPlan: ref<boolean> = ref(false);
+    const yearPlan: ref<boolean> = ref(false);
 
-    let clientName: Ref<string> = ref('');
+    const clientName: Ref<string> = ref('');
 
-    let clientEmail: Ref<string | null> = ref(null);
+    const clientEmail: Ref<string | null> = ref(null);
 
-    let clientNumber: Ref<number | null> = ref(null);
+    const clientNumber: Ref<number | null> = ref(null);
 
     const Plans = ref([
         {
@@ -40,7 +40,7 @@ export const usePurchaseStore = defineStore('purchaseStore', () => {
         },
     ]);
 
-    let selected: Ref<String> = ref('');
+    const selected: Ref<String> = ref('');
 
     const selectPlan = (plan: string) => selected.value = plan;
 

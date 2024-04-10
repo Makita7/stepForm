@@ -1,25 +1,64 @@
-# stepForm
+# Frontend Mentor - Multi-step form solution
 
-This template should help get you started developing with Vue 3 in Vite.
+This is a solution to the [Multi-step form challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/multistep-form-YVAnSdqQBJ). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-## Recommended IDE Setup
+## Table of contents
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+- [Author](#author)
+- [Project Setup](#project-setup)
 
-## Type Support for `.vue` Imports in TS
+## Overview
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+### The challenge
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+Users should be able to:
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+- Complete each step of the sequence
+- Go back to a previous step to update their selections
+- See a summary of their selections on the final step and confirm their order
+- View the optimal layout for the interface depending on their device's screen size
+- See hover and focus states for all interactive elements on the page
+- Receive form validation messages if:
+  - A field has been missed
+  - The email address is not formatted correctly
+  - A step is submitted, but no selection has been made
+- i made use of Pinia to store states and methods that were going to be used in many parts of the app
 
-## Customize configuration
+### Screenshot
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+![](./desktop-preview.jpg)
+![](./cell-preview.jpg)
+
+### Links
+
+- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+
+## My process
+
+### Built with
+
+- Semantic HTML5 markup
+- SCSS custom properties
+- Flexbox
+- Responsive Layouts
+- [Vue](https://vuejs.org/) - Vue Framework
+- [Pinia](https://pinia.vuejs.org/) - Pinia, The intuitive store for Vue.js
+- [Vuetify](https://vuetifyjs.com/en/) - Vuetify, Vue Component Framework
+- [Vite](https://vitejs.dev/) - Vite, Frontend Tooling
+
+
+## Author
+
+- Frontend Mentor - [@Makita7](https://www.frontendmentor.io/profile/Makita7)
+- GitHub - [@Makita7](https://github.com/Makita7)
+
 
 ## Project Setup
 
@@ -36,7 +75,7 @@ npm run dev
 ### Type-Check, Compile and Minify for Production
 
 ```sh
-npm run build
+|
 ```
 
 ### Lint with [ESLint](https://eslint.org/)

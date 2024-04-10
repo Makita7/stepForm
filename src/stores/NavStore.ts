@@ -15,9 +15,9 @@ export const useNavStore = defineStore('NavStore', () => {
         { num: 4, title: 'summary', path: '/summary' },
     ]);
 
-    let personalComplete: ref<boolean> = ref(false);
+    const personalComplete: ref<boolean> = ref(false);
 
-    const setPersonalComplete = (val:boolean) => personalComplete = val;
+    const setPersonalComplete = (val:boolean) => personalComplete.value = val;
 
 
     return { route, width, links, personalComplete, setPersonalComplete}

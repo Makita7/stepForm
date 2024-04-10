@@ -1,7 +1,7 @@
 
 <script setup lang="ts">
     import { usePurchaseStore } from '@/stores/purchaseStore';
-    import { onMounted, ref, watch } from 'vue';
+    import { onMounted, ref } from 'vue';
     import { useNavStore } from '@/stores/NavStore';
 
     const store = usePurchaseStore();
