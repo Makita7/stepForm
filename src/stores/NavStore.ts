@@ -1,4 +1,5 @@
 import { ref } from "vue";
+import type { Ref } from 'vue';
 import { defineStore } from "pinia";
 import { useDisplay } from 'vuetify';
 import { useRoute } from 'vue-router';
@@ -15,7 +16,7 @@ export const useNavStore = defineStore('NavStore', () => {
         { num: 4, title: 'summary', path: '/summary' },
     ]);
 
-    const personalComplete: ref<boolean> = ref(false);
+    const personalComplete: Ref<boolean> = ref(false);
 
     const setPersonalComplete = (val:boolean) => personalComplete.value = val;
 

@@ -2,16 +2,17 @@
 <script setup lang="ts">
     import { usePurchaseStore } from '@/stores/purchaseStore';
     import { onMounted, ref } from 'vue';
+    import type { Ref } from 'vue';
     import { useNavStore } from '@/stores/NavStore';
 
     const store = usePurchaseStore();
-    const erMsg: ref<string> = ref('Field is obligatory');
+    const erMsg: Ref<string> = ref('Field is obligatory');
     const navStore = useNavStore();
-    let completed: ref<boolean> = ref(false);
+    let completed: Ref<boolean> = ref(false);
 
     //rules
-    const isText = (value:string) => value  ? true : erMsg.value;
-    const isEmail = (value:string) => {
+    const isText = (value: string | boolean) => value  ? true : erMsg.value;
+    const isEmail = (value: any) => {
         const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return pattern.test(value) || `Invalid email, please try again...`;
     }

@@ -1,6 +1,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
+import type { Ref } from 'vue';
 import { usePurchaseStore } from '../stores/purchaseStore';
 import { useNavStore } from '@/stores/NavStore';
 

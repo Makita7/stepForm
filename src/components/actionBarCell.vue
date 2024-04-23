@@ -1,20 +1,22 @@
 <script setup lang="ts">
     import { useNavStore } from '@/stores/NavStore';
     import { ref, onMounted, watch } from 'vue';
+    import type { Ref } from 'vue';
     import { usePurchaseStore } from '@/stores/purchaseStore';
+    import type { addOnsType } from '@/stores/purchaseStore';
 
     const navStore = useNavStore();
     const store = usePurchaseStore();
-    let completed: ref<boolean> = ref(false);
-    const addOnsCopy: Ref<addOns[]> = ref([]);
-    let dialog: boolean = ref(false);
+    let completed = ref(false);
+    const addOnsCopy: Ref<addOnsType[]> = ref([]);
+    let dialog = ref(false);
 
     onMounted(() => [
         completed.value = navStore.personalComplete,
         addOnsCopy.value = store.addOnds,
     ]);
 
-    watch(navStore.personalComplete, (newValue, oldValue) => {
+    watch(() => navStore.personalComplete, async (newValue:boolean, oldValue:boolean) => {
         if(newValue !== oldValue){
             completed.value = navStore.personalComplete;
         }

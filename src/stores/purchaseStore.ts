@@ -1,11 +1,22 @@
 import { ref } from 'vue';
+import type { Ref } from 'vue';
 import { defineStore } from 'pinia';
 import arcade from '../assets/icon-arcade.svg';
 import advanced from '../assets/icon-advanced.svg';
 import pro from '../assets/icon-pro.svg';
 
+
+export interface addOnsType {
+    title: string;
+    detail: string;
+    monthly: number;
+    yearly: number;
+    id: number;
+    added: boolean;
+}
+
 export const usePurchaseStore = defineStore('purchaseStore', () => {
-    const yearPlan: ref<boolean> = ref(false);
+    const yearPlan: Ref<boolean> = ref(false);
 
     const clientName: Ref<string> = ref('');
 
@@ -40,11 +51,11 @@ export const usePurchaseStore = defineStore('purchaseStore', () => {
         },
     ]);
 
-    const selected: Ref<String> = ref('');
+    const selected: Ref<string> = ref('');
 
     const selectPlan = (plan: string) => selected.value = plan;
 
-    const addOnds = ref([
+    const addOnds: Ref<addOnsType[]> = ref([
         {
             title: 'Online service',
             detail: 'Access to multiplayer games',
@@ -71,7 +82,7 @@ export const usePurchaseStore = defineStore('purchaseStore', () => {
         },
     ]);
 
-    const SetaddOns = (copy) =>{
+    const SetaddOns = (copy: addOnsType[] ) => {
         addOnds.value = copy
     }
 

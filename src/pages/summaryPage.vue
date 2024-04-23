@@ -8,8 +8,8 @@
     const navStore = useNavStore();
     const addOns = store.addOnds.filter(i => i.added);
     const plan = store.Plans.filter(i => i.title === store.selected)
-    let total: ref<number> = ref(0);
-    let dialog: boolean = ref(false);
+    let total = ref(0);
+    let dialog = ref(false);
 
     function sumTotal(){
         addOns.forEach(el => {
@@ -19,7 +19,7 @@
         store.yearPlan ? total.value += plan[0].yearly :total.value += plan[0].monthly;
     }
 
-    const formatNum = (n:number) =>{
+    const formatNum = (n:any) =>{
         const pattern = /(\d{3})(\d{3})(\d{4})/;
         return String(n).replace(pattern,'($1) $2-$3');
     }

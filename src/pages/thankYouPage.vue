@@ -3,12 +3,13 @@
     import { usePurchaseStore } from '@/stores/purchaseStore';
     import { useNavStore } from '@/stores/NavStore';
     import { onMounted, ref } from 'vue';
+    import type { Ref } from 'vue';
     import { useDisplay } from 'vuetify';
 
     const store = usePurchaseStore();
     const navStore = useNavStore();
-    let zoomIn: boolean = ref(false)
-    let animateIn: boolean = ref(false)
+    let zoomIn: Ref<Boolean> = ref(false)
+    let animateIn: Ref<Boolean> = ref(false)
 
     onMounted(() => {
         setTimeout(() => zoomIn.value = true, 1000)
