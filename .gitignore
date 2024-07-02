@@ -12,6 +12,7 @@ references/
 .DS_Store
 coverage
 *.local
+/dist
 
 /cypress/videos/
 /cypress/screenshots/
